@@ -29,8 +29,9 @@ package HW;
 public class Town {
     String name;
     public Path[]path;
-    public Town(String name){
+    public Town(String name, Path[]path){
         this.name=name;
+        this.path=path;
     }
     public String toString(){
         String s="";

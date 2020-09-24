@@ -8,20 +8,8 @@ public class Person {
     Name name;
     int height;
     Person father;
-    public Person(String name,int h){
-        
-    }
-    public Person(Name name,int h){
-        
-    }
-    
     public Person(Name name, int h,Person father){
         this.name=name;
-        if(name.patronymic==null && name.surname==null){
-            this.name.patronymic=father.name.name+"ович";
-            this.name.surname=father.name.surname;
-        }
-        //this.name=name;???
         this.height=h;
         this.father=father;
     }
