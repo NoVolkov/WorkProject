@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-        System.out.println("Ветка branch1);
+        System.out.println("Ветка branch");
 
     }
 }
