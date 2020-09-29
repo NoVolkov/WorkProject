@@ -28,4 +28,9 @@ public class Line {
     public String toString(){
         return "Линия от "+start+" до "+end;
     }
+    public double length(){
+        double r1=(double)((end.x-start.x)*(end.x-start.x));
+        double r2=(double)((end.y-start.y)*(end.y-start.y));
+        return Math.sqrt(r1+r2);
+    }
 }

@@ -12,7 +12,10 @@ import java.util.Arrays;
  */
 public class Student {
     String name;
-   public int[]marks;
+    public int[]marks;
+    public Student(String name){
+        this(name,null);
+    }
     public Student(String name, int[]marks){
         this.name=name;
         this.marks=marks;

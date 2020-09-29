@@ -29,14 +29,19 @@ package HW;
 public class Town {
     String name;
     public Path[]path;
+    public Town(String name){
+        this(name,null);
+    }
     public Town(String name, Path[]path){
         this.name=name;
         this.path=path;
     }
     public String toString(){
         String s="";
-        for(Path p:path){
-            s+=p+" ";
+        if(path!=null) {
+            for (Path p : path) {
+                s += p + " ";
+            }
         }
         return name+": {"+s+"}";
     }
