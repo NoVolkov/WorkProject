@@ -23,4 +23,27 @@ public class Student {
     public String toString(){
         return name+": "+ Arrays.toString(marks);
     }
+    public double middleMark(){
+        double r=0;
+        if(marks.length==0)return 0;
+        for(int i:marks){
+            r+=(double)i;
+        }
+        return r/marks.length;
+    }
+    public void excellent(){
+        if(marks.length!=0){
+            int j=marks.length;
+            for(int i:marks){
+                if(i==5)j--;
+            }
+            if(j==0){
+                System.out.println("Student is pretty good!");
+            }else{
+                System.out.println("No good.");
+            }
+        }else{
+            System.out.println("Student haven`t marks.");
+        }
+    }
 }
