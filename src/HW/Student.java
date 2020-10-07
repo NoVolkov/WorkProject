@@ -9,7 +9,14 @@ import java.util.Arrays;
         s2.marks=s1.marks;
         s3.marks= Arrays.copyOf(s1.marks,s1.marks.length);
         s2.marks[0]=5;
+        5.6
+        Student vas=new Student("VAS", new int[]{3,4,5,4});
+        Student pet=new Student("PET", new int[]{5,5,5,5});
+        System.out.println(vas.middleMark()+"//"+pet.middleMark());
+        vas.excellent();
+        pet.excellent();
  */
+
 public class Student {
     String name;
     public int[]marks;
