@@ -1,8 +1,11 @@
 package HW;
-
+//6.1
 public class Home {
-    final int level;
+    private int level;
     public Home(int level){
+        if(level<1){
+            throw new IllegalArgumentException("Level must be greater than 0.");
+        }
         
         this.level=level;
     }
