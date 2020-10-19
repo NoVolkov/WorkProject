@@ -1,4 +1,5 @@
 package HW;
+import java.lang.Number;
 //5.5
 /*
         Fraction f1=new Fraction(4,3);
@@ -7,15 +8,20 @@ package HW;
         Fraction f4=new Fraction(6,5);
         System.out.println(f1.sum(f2).div(f3).multi(f4));
  */
-public class Fraction {
+final public class Fraction {
     public int numerator;
     public int denomination;
     public Fraction(int I){
         this(I,1);
     }
     public Fraction(int numerator,int denomination){
-        this.numerator=numerator;
-        this.denomination=denomination;
+        if((numerator<0 && denomination<0) || denomination<0){
+            this.numerator=(-1);
+            this.denomination=(-1);
+        }
+        this.numerator*=numerator;
+        this.denomination*=denomination;
+
     }
     public String toString(){
         return numerator+"/"+denomination;
@@ -64,4 +70,17 @@ public class Fraction {
         int t2=denomination;
         return new Fraction(t1,t2);
     }
+
+
+
+    public int intValue(){
+        return numerator/denomination;
+    }
+    public double doubleValue(){
+        return (double)numerator/denomination;
+    }
+    public float floatValue(){
+        return (float)numerator/denomination;
+    }
+
 }

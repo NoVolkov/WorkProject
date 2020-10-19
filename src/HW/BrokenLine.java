@@ -8,7 +8,7 @@ import java.util.Arrays;
     System.out.println(b.length());
  */
 public class BrokenLine {
-    private Point[] p;
+    public Point[] p;//private
     public BrokenLine(){
         this(new Point[0]);
     }
