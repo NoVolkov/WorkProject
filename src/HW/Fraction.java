@@ -1,6 +1,6 @@
 package HW;
 import java.lang.Number;
-//5.5
+//5.5,6.4,9.1
 /*
         Fraction f1=new Fraction(4,3);
         Fraction f2=new Fraction(1,2);
@@ -8,7 +8,7 @@ import java.lang.Number;
         Fraction f4=new Fraction(6,5);
         System.out.println(f1.sum(f2).div(f3).multi(f4));
  */
-final public class Fraction {
+final public class Fraction extends Number{
     public int numerator;
     public int denomination;
     public Fraction(int I){
@@ -71,11 +71,15 @@ final public class Fraction {
         return new Fraction(t1,t2);
     }
 
-
-
     public int intValue(){
         return numerator/denomination;
     }
+
+    @Override
+    public long longValue() {
+        return 0;
+    }
+
     public double doubleValue(){
         return (double)numerator/denomination;
     }
@@ -83,4 +87,16 @@ final public class Fraction {
         return (float)numerator/denomination;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj)return true;
+        if(obj==null)return false;
+        if(obj.getClass()!=this.getClass())return false;
+
+        Fraction f=(Fraction)obj;
+        return denomination==f.denomination && numerator==f.numerator;
+    }
+    public int hashCode(){
+        return intValue()+numerator+denomination;
+    }
 }

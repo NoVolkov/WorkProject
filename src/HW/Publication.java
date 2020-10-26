@@ -18,7 +18,8 @@ Comment c1=new Comment("Держите ссылку на то как работ�
         Publication p=new Publication(10,"История транзистора",t,txt,c1);
  */
 public class Publication {
-    String title, text;
+    final String title;
+    String text;
     String[]tags;
     Comment com;
     int rang;
@@ -28,6 +29,9 @@ public class Publication {
         this.tags=tags;
         this.text=text;
         this.com=com;
+    }
+    public String getTitle(){
+        return this.title;
     }
     public String toString(){
         String str="("+rang+") "+title+"\nтэги: ";

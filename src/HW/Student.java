@@ -3,6 +3,7 @@ package HW;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 /*
+5.6,6.9
         Student s1=new Student("Вася",new int[]{3,4,5});
         Student s2=new Student("Петя",null);
         Student s3=new Student("Андрей",null);
@@ -24,8 +25,14 @@ public class Student {
         this(name,null);
     }
     public Student(String name, int[]marks){
+        for(int i:marks){
+            if(i<2 && i>5)throw new IllegalArgumentException("Оценки должны быть в диапазоне от 2 до 5: "+i);
+        }
         this.name=name;
         this.marks=marks;
+    }
+    public int[] getMarks(){
+        return marks;
     }
     public String toString(){
         return name+": "+ Arrays.toString(marks);

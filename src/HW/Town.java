@@ -1,5 +1,9 @@
 package HW;
+
+import java.util.Arrays;
+
 /*
+3.3,6.10
         Town a=new Town("A",null);
         Town b=new Town("B",null);
         Town c=new Town("C",null);
@@ -25,16 +29,33 @@ package HW;
         d.path=new Path[]{dc,de,da};
         e.path=new Path[]{ef};
         f.path=new Path[]{fb,fe};
+        a.setPath(new Path[]{ab,af,ad});
+        System.out.println(a);
+        a.delPath(1);
+        System.out.println(a);
  */
 public class Town {
-    String name;
-    public Path[]path;
+    protected String name;
+    protected Path[]path;
+
     public Town(String name){
-        this(name,null);
-    }
-    public Town(String name, Path[]path){
         this.name=name;
-        this.path=path;
+        this.path=new Path[0];
+    }
+    public void setPath(Path p){
+        Path[] n= Arrays.copyOf(this.path,this.path.length+1);
+        n[n.length-1]=p;
+        this.path=Arrays.copyOf(n,n.length);
+    }
+    public void setPath(Path...p){
+        Path[] n=Arrays.copyOf(this.path,this.path.length+p.length);
+        System.arraycopy(p,0,n,this.path.length,p.length);
+        this.path=Arrays.copyOf(n,n.length);
+    }
+    public void delPath(int i){//?????????????????
+        Path[] n=Arrays.copyOf(this.path,this.path.length);
+        System.arraycopy(this.path,i+1,n,i,this.path.length-n.length);
+        this.path=Arrays.copyOf(n,n.length);
     }
     public String toString(){
         String s="";

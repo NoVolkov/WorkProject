@@ -1,5 +1,5 @@
 package HW;
-//4.4,5.4
+//4.4,5.4,6.2,9.4
 public class Time {
     int sec;
     private int min,hr,s;
