@@ -31,20 +31,14 @@ public class Square extends Figure{
         return "Квадрат в точке "+start+" со стороной "+a+".";
     }
 	public BrokenLine line(){
-		BrokenLine l=new BrokenLine();
-		Point[] m=new Point[]{this.start,
-							  new Point(this.start.x+this.a,this.start.y),
-							  new Point(this.start.x,this.start.y+this.a),
-							  new Point(this.start.x+this.a,this.start.y+this.a)};
-		int l1=(int)Math.floor(Math.random() * 4),l2=0;
-		while(true){
-		    if(l2==l1){
-		        l2=(int)Math.floor(Math.random() * 4);
-            }else{
-		        break;
-            }
-        }
-		l.addPoint(m[l1],m[l2]);
+		ClosedBrokenLine l=new ClosedBrokenLine();
+		Point[] m=new Point[]{  (Point)start.clone(),
+							    new Point(this.start.x+this.a,this.start.y),
+                                new Point(this.start.x+this.a,this.start.y+this.a),
+                                new Point(this.start.x,this.start.y+this.a),
+                                (Point)start.clone()
+							  };
+		l.addPoint(m);
 		return l;
 	}
 	public double getArea(){

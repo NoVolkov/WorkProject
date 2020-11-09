@@ -1,17 +1,15 @@
 package HW.volkov.main;
 
-import HW.volkov.life.arsenal.Gun;
-import HW.volkov.life.arsenal.Shooter;
-import HW.volkov.math.Fraction;
-import java.math.BigInteger;
+import HW.volkov.praktika.Door;
+import HW.volkov.praktika.Name;
+
 import static java.lang.Integer.parseInt;
-import java.awt.Point;
-import HW.volkov.geometry.*;
 
-public class Main {
-
+public class Main extends Object{
     public static void main(String[] args) {
-
+        Door d=Door.THREE;
+        Door d1=Door.ONE;
+        System.out.println(d.open());
     }
 
        /*

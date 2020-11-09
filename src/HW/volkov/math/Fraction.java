@@ -9,8 +9,8 @@ import java.lang.Number;
         System.out.println(f1.sum(f2).div(f3).multi(f4));
  */
 final public class Fraction extends Number{
-    public int numerator;
-    public int denomination;
+    private int numerator;
+    private int denomination;
     public Fraction(int I){
         this(I,1);
     }
@@ -75,12 +75,15 @@ final public class Fraction extends Number{
     }
 
     public int intValue(){
+        if(denomination==0){
+            throw new FractionException("Denomination==0");
+        }
         return numerator/denomination;
     }
 
     @Override
     public long longValue() {
-        return (long)numerator/denomination;
+        return intValue();
     }
 
     public double doubleValue(){
@@ -102,7 +105,7 @@ final public class Fraction extends Number{
     public int hashCode(){
         return intValue()+numerator+denomination;
     }
-    public Object clone(){
-        return new Fraction(numerator,denomination);
+    public Object clone()throws CloneNotSupportedException{
+        return super.clone();
     }
 }
