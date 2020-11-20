@@ -1,5 +1,6 @@
 package HW.volkov.main;
 
+import HW.volkov.math.Fraction;
 import HW.volkov.praktika.Door;
 import HW.volkov.praktika.Name;
 
@@ -7,9 +8,9 @@ import static java.lang.Integer.parseInt;
 
 public class Main extends Object{
     public static void main(String[] args) {
-        Door d=Door.THREE;
-        Door d1=Door.ONE;
-        System.out.println(d.open());
+        Fraction d=new Fraction<Double>(1.1,1.2);
+        Fraction d1=new Fraction<Float>(1.1f,1.2f);
+        System.out.println(d1.getNumerator().getClass());
     }
 
        /*

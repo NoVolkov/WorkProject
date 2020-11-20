@@ -8,89 +8,125 @@ import java.lang.Number;
         Fraction f4=new Fraction(6,5);
         System.out.println(f1.sum(f2).div(f3).multi(f4));
  */
-final public class Fraction extends Number{
-    private int numerator;
-    private int denomination;
-    public Fraction(int I){
-        this(I,1);
+final public class Fraction<E extends Number> extends Number{
+    private Number numerator;
+    private Number denomination;
+    public Fraction(E I){
+        numerator=I;
+        denomination=1;
     }
-    public Fraction(int numerator,int denomination){
-        if((numerator<0 && denomination<0) || denomination<0){
+
+    public Fraction(E numerator,E denomination){
+        Number n1=numerator;
+        Number n2=denomination;
+        if((n1.doubleValue()<0 && n2.doubleValue()<0) || n2.doubleValue()<0){
             this.numerator=(-1);
             this.denomination=(-1);
         }else{
             this.numerator=1;
             this.denomination=1;
         }
-        this.numerator*=numerator;
-        this.denomination*=denomination;
-
+        this.numerator=n1.doubleValue()*this.numerator.doubleValue();
+        this.denomination=n2.doubleValue()*this.denomination.doubleValue();
     }
+
+
+
     public String toString(){
         return numerator+"/"+denomination;
     }
     //++++++++++
-    public Fraction sum(Fraction f){
-        int t1=numerator*f.denomination+f.numerator*denomination;
-        int t2=denomination*f.denomination;
+    public Fraction sum(Fraction<E> f){
+        Number n1=f.numerator;
+        Number n2=f.denomination;
+        double t1=numerator.doubleValue()*n2.doubleValue()+n1.doubleValue()*denomination.doubleValue();
+        double t2=denomination.doubleValue()*n2.doubleValue();
         return new Fraction(t1,t2);
     }
-    public Fraction sum(int n){
-        int t1=numerator+n*denomination;
-        int t2=denomination;
+    public Fraction sum(E n){
+        Number n1=n;
+        Number t1=numerator.doubleValue()+n1.doubleValue()*denomination.doubleValue();
+        Number t2=denomination.doubleValue();
         return new Fraction(t1,t2);
     }
     //----------
-    public Fraction minus(Fraction f){
-        int t1=numerator*f.denomination-f.numerator*denomination;
-        int t2=denomination*f.denomination;
+    public Fraction minus(Fraction<E> f){
+        Number n1=f.numerator;
+        Number n2=f.denomination;
+        double t1=numerator.doubleValue()* n2.doubleValue()- n1.doubleValue()*denomination.doubleValue();
+        double t2=denomination.doubleValue()* n2.doubleValue();
         return new Fraction(t1,t2);
     }
-    public Fraction minus(int n){
-        int t1=numerator-n*denomination;
-        int t2=denomination;
+    public Fraction minus(E n){
+        Number n1=n;
+        double t1=numerator.doubleValue()-n.doubleValue()*denomination.doubleValue();
+        double t2=denomination.doubleValue();
         return new Fraction(t1,t2);
     }
     //::::::::::
-    public Fraction div(Fraction f){
-        int t1=numerator*f.denomination;
-        int t2=f.numerator*denomination;
+    public Fraction div(Fraction<E> f){
+        Number n1=f.numerator;
+        Number n2=f.denomination;
+        double t1=numerator.doubleValue()* n2.doubleValue();
+        double t2=n1.doubleValue()*denomination.doubleValue();
         return new Fraction(t1,t2);
     }
-    public Fraction div(int n){
-        int t1=numerator;
-        int t2=n*denomination;
+    public Fraction div(E n){
+        Number n1=n;
+        double t1=numerator.doubleValue();
+        double t2=n.doubleValue()*denomination.doubleValue();
         return new Fraction(t1,t2);
     }
     //**********
-    public Fraction multi(Fraction f){
-        int t1=numerator*f.numerator;
-        int t2=denomination*f.denomination;
+    public Fraction multi(Fraction<E> f){
+        Number n1=f.numerator;
+        Number n2=f.denomination;
+        double t1=numerator.doubleValue()*n1.doubleValue();
+        double t2=denomination.doubleValue()* n2.doubleValue();
         return new Fraction(t1,t2);
     }
-    public Fraction multi(int n){
-        int t1=numerator*n;
-        int t2=denomination;
+    public Fraction multi(E n){
+        Number n1=n;
+        double t1=numerator.doubleValue()*n.doubleValue();
+        double t2=denomination.doubleValue();
         return new Fraction(t1,t2);
     }
 
+    //Override
+    @Override
     public int intValue(){
-        if(denomination==0){
+        if(denomination.intValue()==0){
             throw new FractionException("Denomination==0");
         }
-        return numerator/denomination;
+        return (int)(numerator.doubleValue()/denomination.doubleValue());
     }
-
     @Override
     public long longValue() {
-        return intValue();
+        if(denomination.intValue()==0){
+            throw new FractionException("Denomination==0");
+        }
+        return numerator.longValue()/denomination.longValue();
+    }
+    @Override
+    public double doubleValue(){
+        if(denomination.intValue()==0){
+            throw new FractionException("Denomination==0");
+        }
+        return numerator.doubleValue()/denomination.doubleValue();
+    }
+    @Override
+    public float floatValue(){
+        if(denomination.intValue()==0){
+            throw new FractionException("Denomination==0");
+        }
+        return numerator.floatValue()/denomination.floatValue();
     }
 
-    public double doubleValue(){
-        return (double)numerator/denomination;
+    public Number getNumerator(){
+        return numerator;
     }
-    public float floatValue(){
-        return (float)numerator/denomination;
+    public Number getDenomination(){
+        return denomination;
     }
 
     @Override
@@ -100,10 +136,11 @@ final public class Fraction extends Number{
         if(obj.getClass()!=this.getClass())return false;
 
         Fraction f=(Fraction)obj;
+
         return denomination==f.denomination && numerator==f.numerator;
     }
     public int hashCode(){
-        return intValue()+numerator+denomination;
+        return intValue()+numerator.intValue()+denomination.intValue();
     }
     public Object clone()throws CloneNotSupportedException{
         return super.clone();
