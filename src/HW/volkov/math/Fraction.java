@@ -8,7 +8,7 @@ import java.lang.Number;
         Fraction f4=new Fraction(6,5);
         System.out.println(f1.sum(f2).div(f3).multi(f4));
  */
-final public class Fraction<E extends Number> extends Number{
+final public class Fraction<E extends Number> extends Number implements Comparable<Fraction<E>>{
     private Number numerator;
     private Number denomination;
     public Fraction(E I){
@@ -145,4 +145,19 @@ final public class Fraction<E extends Number> extends Number{
     public Object clone()throws CloneNotSupportedException{
         return super.clone();
     }
+    @Override
+    public int compareTo(Fraction<E> n){
+        double n1=numerator.doubleValue()*n.denomination.doubleValue();
+        double n2=n.numerator.doubleValue()*denomination.doubleValue();
+        if(n1>n2){
+            return (int)(n1-n2);
+        }else{
+            if(n2>n1){
+                return (int)(n2-n1);
+            }else{
+                return 0;
+            }
+        }
+    }
+
 }

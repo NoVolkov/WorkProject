@@ -1,7 +1,11 @@
 package HW.volkov.life.education;
 
+
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 /*
 5.6,6.9
         Student s1=new Student("Вася",new int[]{3,4,5});
@@ -18,38 +22,50 @@ import java.util.Arrays;
         pet.excellent();
  */
 
-public class Student {
+public class Student<T> {
     String name;
-    public int[]marks;
-    public Student(String name){
-        this(name,null);
+    Predicate<T> border;
+    public List<T> marks=new ArrayList<>();
+    public Student(String name, Predicate<T>border){
+        this(name,border,null);
     }
-    public Student(String name, int[]marks){
-        for(int i:marks){
-            if(i<2 && i>5)throw new IllegalArgumentException("Оценки должны быть в диапазоне от 2 до 5: "+i);
+    public Student(String name,Predicate<T> border, T...marks){
+        for(T i:marks){
+            addMark(i);
         }
         this.name=name;
-        this.marks=marks;
+        this.border=border;
+        if(marks!=null){
+            for(T i:marks){
+                this.marks.add(i);
+            }
+        }
     }
-    public int[] getMarks(){
-        return marks;
+    public List<T> getMarks(){
+        return new ArrayList<T>(marks);
     }
-    public String toString(){
-        return name+": "+ Arrays.toString(marks);
+    public String toString()
+    {
+        String str="[";
+        for(int i=0;i<marks.size();i++){
+            str+=marks.get(i)+", ";
+        }
+        str+="]";
+        return name+": "+ str;//---------------------
     }
     public double middleMark(){
         double r=0;
-        if(marks.length==0)return 0;
-        for(int i:marks){
+        if(marks.size()==0)return 0;
+        for(T i:marks){
             r+=(double)i;
         }
-        return r/marks.length;
+        return r/marks.size();
     }
     public void excellent(){
-        if(marks.length!=0){
-            int j=marks.length;
-            for(int i:marks){
-                if(i==5)j--;
+        if(marks.size()!=0){
+            int j=marks.size();
+            for(T i:marks){
+                if((int)i==5)j--;
             }
             if(j==0){
                 System.out.println("Student is pretty good!");
@@ -59,5 +75,8 @@ public class Student {
         }else{
             System.out.println("Student haven`t marks.");
         }
+    }
+    public void addMark(T n){
+        if(border.test(n))marks.add(n);
     }
 }
