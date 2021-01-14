@@ -1,5 +1,7 @@
 package HW.volkov.main;
 
+import HW.volkov.exam.Z1.*;
+import HW.volkov.life.Person;
 import HW.volkov.praktika.Student.Observer;
 import HW.volkov.DesignPattern.Decorator.Example.*;
 import HW.volkov.DesignPattern.Memento.Example.*;
@@ -21,13 +23,18 @@ import static java.lang.Integer.parseInt;
 
 public class Main extends Object{
     public static void main(String[] args) {
+    Persons p=new Persons();
+    Alien a1=new Alien("a1");
+    Alien a2=new Alien("a2");
+    Alien a3=new Alien("a3");
+    Human h1=new Human("h1");
+    Human h2=new Human("h2");
+    Human h3=new Human("h3");
 
 
+    Moon m=new Moon(Persons.getPersons());
 
-
-
-
-
+    m.sitPersone(a3);
 
 
 
